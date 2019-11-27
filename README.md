@@ -12,13 +12,13 @@ As a progrommer/IT engineer/big data developer, I am eager to learn something in
 
 Hence, this project is an exploration for a good learning method. I use it to force myself to learn something proactively.
 
-##Method
+## Method
 
 * Build everything from scratch - I expect it to be both challenging and interesting.
 * Code & think & write at the same time - I believe summary and communication is extremely important.
 * Do things as stupid as possible - K.I.S.S
 * Increase complexity and ajust desgin only when is absolutely necessary - so that I can learn why and how every framework is built as they are.
-* Enough is good when learning new knowledge - because I do not have enough time to learn more.
+* Enough is good when learning new knowledge - because I do not have enough time to learn even more.
 
 In my experience, I am not very good at doing a long-term project. So there is a good chance that this project is created in private and deleted in private. In that case, "nice try" to myself.
 
