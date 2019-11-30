@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kafka Flow</title>
+</head>
+<body>
+<script src=./kafka.js></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<h1>Kafka Flow</h1>
+
+<div>
+    <b>bootstrap server:</b>
+    <input type="text" value="localhost:9092" name="brokers" id="brokers">
+</div>
+<div>
+    <b>topic:</b>
+    <input type="text" value="" name="topic" id="topic">
+</div>
+<div>
+    <b>offset reset:</b>
+    <input type="radio" value="earliest" name="offset" id="earliest" required>earliest
+    <input type="radio" value="latest" name="offset" id="latest">latest
+</div>
+<input type="button" value="开始消费" onclick="connect()">
+<div>
+    <textarea name="messages" id="messages" cols="80" rows="20" ></textarea>
+</div>
+
+
+
+
+</body>
+</html>
