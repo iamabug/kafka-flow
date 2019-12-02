@@ -11,50 +11,50 @@ import java.io.IOException;
 public class KafkaSocket extends WebSocketAdapter {
 
     private static ObjectMapper mapper = new ObjectMapper();
+    private Consumer consumer;
 
     @Override
     public void onWebSocketBinary(byte[] payload, int offset, int len) {
         super.onWebSocketBinary(payload, offset, len);
-        System.out.println(payload);
     }
 
     @Override
     public void onWebSocketClose(int statusCode, String reason) {
         super.onWebSocketClose(statusCode, reason);
-        System.out.println("websocket closed.");
+        System.out.println("websocket closed: " + getSession().getRemoteAddress().getHostString());
     }
 
     @Override
     public void onWebSocketConnect(Session sess) {
         super.onWebSocketConnect(sess);
-        try {
-            sess.getRemote().sendString("ping");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("websocket connected.");
+        System.out.println("websocket connected: " + sess.getRemoteAddress().getAddress());
     }
 
     @Override
     public void onWebSocketError(Throwable cause) {
         super.onWebSocketError(cause);
-        System.out.println("websocket error.");
+        System.out.println("websocket error: " + getSession().getRemoteAddress().getHostString());
     }
 
     @Override
     public void onWebSocketText(String message) {
         super.onWebSocketText(message);
-        System.out.println("receive message: " + message);
         try {
             Message msg = mapper.readValue(message, Message.class);
+            System.out.println(msg.type);
             switch (msg.type) {
                 case KAFKA_CONSUME:
-                    new Consumer(getRemote()).responde(msg);
+                    consumer = new Consumer(getRemote(), msg);
+                    consumer.start();
+                    break;
+                case STOP_CONSUME:
+                    consumer.stopConsuming();
+                    break;
+                case TOPIC_LIST:
                     break;
                 default:
                     break;
             }
-            System.out.println(msg.type);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             try {

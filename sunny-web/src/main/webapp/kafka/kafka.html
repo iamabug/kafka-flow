@@ -6,26 +6,34 @@
 </head>
 <body>
 <script src=./kafka.js></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../jquery-3.4.1.min.js"></script>
+<script>window.onload=get_topics()</script>
 <h1>Kafka Flow</h1>
 
 <div>
-    <b>bootstrap server:</b>
+    <b>bootstrap server: </b>
     <input type="text" value="localhost:9092" name="brokers" id="brokers">
 </div>
 <div>
-    <b>topic:</b>
-    <input type="text" value="" name="topic" id="topic">
+    <b>zookeeper: </b>
+    <input type="text" value="localhost:2181" name="brokers" id="zk">
 </div>
 <div>
-    <b>offset reset:</b>
-    <input type="radio" value="earliest" name="offset" id="earliest" required>earliest
+    <b>topic:</b>
+    <input type="text" value="iamabug" name="topic" id="topic">
+    <select></select>
+</div>
+<div>
+    <b>offset reset: </b>
+    <input type="radio" value="earliest" name="offset" id="earliest" checked="checked" required>earliest
     <input type="radio" value="latest" name="offset" id="latest">latest
 </div>
-<input type="button" value="开始消费" onclick="connect()">
+<input type="button" value="开始消费" onclick="connect()" id="start">
+<input type="button" value="停止消费" onclick="reset()" id="stop" style="display: none;">
 <div>
     <textarea name="messages" id="messages" cols="80" rows="20" ></textarea>
 </div>
+xxx
 
 
 

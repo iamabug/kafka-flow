@@ -6,9 +6,12 @@ import java.util.Map;
 public class Message {
     public enum TYPE {
         KAFKA_CONSUME,
+        STOP_CONSUME,
+        TOPIC_LIST,
         KAFKA_MESSAGES,
         KAFKA_PRODUCE,
-        ERROR_INFO
+        ERROR_INFO,
+        PING
     }
     public TYPE type;
     public Map<String, Object> data = new HashMap<>();
@@ -27,6 +30,14 @@ public class Message {
 
     public void setData(Map<String, Object> data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "type=" + type +
+                ", data=" + data +
+                '}';
     }
 
     public Message(TYPE type) {
