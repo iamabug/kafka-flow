@@ -43,14 +43,15 @@ public class KafkaSocket extends WebSocketAdapter {
             Message msg = mapper.readValue(message, Message.class);
             System.out.println(msg.type);
             switch (msg.type) {
-                case KAFKA_CONSUME:
+                case CMD_START_CONSUME:
+                    System.out.println("cmd_start_consume");
                     consumer = new Consumer(getRemote(), msg);
                     consumer.start();
                     break;
-                case STOP_CONSUME:
+                case CMD_STOP_CONSUME:
                     consumer.stopConsuming();
                     break;
-                case TOPIC_LIST:
+                case CMD_LIST_TOPICS:
                     break;
                 default:
                     break;

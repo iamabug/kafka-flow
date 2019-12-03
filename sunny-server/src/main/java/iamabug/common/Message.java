@@ -5,13 +5,20 @@ import java.util.Map;
 
 public class Message {
     public enum TYPE {
+        CMD_START_CONSUME,
+        CMD_STOP_CONSUME,
+        CMD_RESUME_CONSUME,
+        MESSAGES_CONSUMED,
+        CMD_LIST_TOPICS,
+        RESULT_LIST_TOPICS,
+
         KAFKA_CONSUME,
         STOP_CONSUME,
         TOPIC_LIST,
         KAFKA_MESSAGES,
         KAFKA_PRODUCE,
+        PING,
         ERROR_INFO,
-        PING
     }
     public TYPE type;
     public Map<String, Object> data = new HashMap<>();

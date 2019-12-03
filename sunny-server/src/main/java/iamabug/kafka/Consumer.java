@@ -34,7 +34,7 @@ public class Consumer extends Thread{
                 if (records.count() > 0) {
                     List<Map<String, String>> messages = new ArrayList<>();
                     records.forEach(record -> messages.add(assembleMessage(record)));
-                    Message resp = new Message(Message.TYPE.KAFKA_MESSAGES);
+                    Message resp = new Message(Message.TYPE.MESSAGES_CONSUMED);
                     resp.put("messages", messages);
                     resp.put("total", records.count());
                     client.sendString(mapper.writeValueAsString(resp));

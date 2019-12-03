@@ -7,7 +7,7 @@ function connect() {
     $('#messages')
     ws = new WebSocket("ws://localhost:12345/ws/kafka/dummy")
     msg = {
-        "type": "KAFKA_CONSUME",
+        "type": "CMD_START_CONSUME",
         "data": {
             "bootstrap-server": $('#brokers').val(),
             "topic": $('#topic').val(),
@@ -26,23 +26,34 @@ function connect() {
     }
 
     ws.onmessage = function(e) {
-        data = JSON.parse(e.data).data
-        messages = data.messages
-        for (var i=0; i<data.total; i++){
-            var m = messages[i]
-            $('#messages').val($('#messages').val() + m.value + '\n')
+        try {
+            data = JSON.parse(e.data)
+        } catch(e) {
+            return
         }
-        $('#messages').scrollTop($('#messages')[0].scrollHeight) 
+        switch (data.type) {
+            case "MESSAGES_CONSUMED": 
+            messages = data.data.messages
+            for (var i=0; i<data.data.total; i++){
+                var m = messages[i]
+                $('#messages').val($('#messages').val() + m.value + '\n')
+            }
+            $('#messages').scrollTop($('#messages')[0].scrollHeight) 
+            case "RESULT_LIST_ROPICS":
+            
+        }
+        
     }
 }
 
 function reset() {
     $('#start').prop("disabled", false)
     $('#stop').hide()
-    ws.send(JSON.stringify({"type": "STOP_CONSUME"}))
+    ws.send(JSON.stringify({"type": "CMD_STOP_CONSUME"}))
     clearTimeout(timer)
 }
 
 function get_topics() {
-    
+    //ws=new WebSocket("ws://localhost:12345/ws/kafka/dummy")
+   // ws.send(JSON.stringify({"type": "CMD_LIST_TOPICS"}))
 }
