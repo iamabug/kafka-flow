@@ -1,15 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sunny Project</title>
+  <title>Bootstrap 实例</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src=/kafka/kafka.js></script>
+  <script> 
+        $(function(){
+          $("#kafka").load("/kafka/kafka.html"); 
+        });
+    </script>
 </head>
 <body>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script> 
-<h1>Sunny Project Home Page</h1>
-Get started on 2019-11-27.
 
-<ul>
-  <li><a href="kafka/kafka.html">Kafka Flow</a></li>
-</ul>
+ 
+    <div class="container-fluid">
+
+        <!-- Nav pills -->
+        <ul class="nav nav-pills" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="pill" href="#home">首页</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#config_tab">集群配置</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#menu2">生产数据</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" data-toggle="pill" href="#menu2">消费数据</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#menu2">生产 & 消费</a>
+              </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#menu2">项目 Github</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" data-toggle="pill" href="#menu2">关于作者</a>
+            </li>
+        </ul>
+      
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="home" class="container-fluid tab-pane active"><br>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container-fluid">
+                  <h1></h1> 
+                  <p>一个开源的个人项目，我用它来梳理整合自己接触到的知识，同时开发一些可能有用的工具。
+                  </p>
+                  <p>目前主要开发了 Kafka 的相关工具，功能包括：
+                      <ul>
+                          <li>支持配置连接多个 Kafka 集群</li>
+                          <li>在浏览器中生产数据</li>
+                          <li>在浏览器中消费数据</li>
+                          <li>在浏览器中同时生产和消费数据</li>
+                      </ul>
+                  </p>
+                  <button type="button" class="btn btn-primary">了解更多 »</button>
+                </div>
+              </div>
+           
+          </div>
+          <div id="config_tab" class="container-fluid tab-pane fade"><br>
+            <div id="config"></div>
+            
+            
+          </div>
+          <div id="menu2" class="container tab-pane fade"><br>
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+          </div>
+        </div>
+      </div>
+      
+
+
+  
+
 </body>
 </html>

@@ -12,7 +12,6 @@ import java.util.*;
 
 public class Consumer extends Thread{
     private RemoteEndpoint client;
-    private static ObjectMapper mapper = new ObjectMapper();
     private static Random random = new Random();
     ConsumerRecords<String, String> records;
     private Message msg;
@@ -37,7 +36,7 @@ public class Consumer extends Thread{
                     Message resp = new Message(Message.TYPE.MESSAGES_CONSUMED);
                     resp.put("messages", messages);
                     resp.put("total", records.count());
-                    client.sendString(mapper.writeValueAsString(resp));
+                    client.sendString(resp.toJson());
                 }
             }
         } catch (IOException e) {

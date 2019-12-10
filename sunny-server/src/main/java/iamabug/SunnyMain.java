@@ -7,7 +7,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-public class ServerMain {
+public class SunnyMain {
     public static void main(String[] args) throws Exception {
         Server server = new Server(12345);
         ContextHandlerCollection contexts = new ContextHandlerCollection();

@@ -1,9 +1,15 @@
 package iamabug.common;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Message {
+
+    private static ObjectMapper mapper = new ObjectMapper();
+
     public enum TYPE {
         CMD_START_CONSUME,
         CMD_STOP_CONSUME,
@@ -56,5 +62,17 @@ public class Message {
     }
 
     public Message() {
+    }
+
+    public static Message fromJson(String json) throws JsonProcessingException {
+        return mapper.readValue(json, Message.class);
+    }
+
+    public String toJson() throws JsonProcessingException {
+        return mapper.writeValueAsString(this);
+    }
+
+    public static String error(Exception e) throws JsonProcessingException {
+        return new Message(TYPE.ERROR_INFO).put("error", e).toJson();
     }
 }

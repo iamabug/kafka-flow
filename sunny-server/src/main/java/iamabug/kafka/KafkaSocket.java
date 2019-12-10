@@ -40,7 +40,7 @@ public class KafkaSocket extends WebSocketAdapter {
     public void onWebSocketText(String message) {
         super.onWebSocketText(message);
         try {
-            Message msg = mapper.readValue(message, Message.class);
+            Message msg = Message.fromJson(message);
             System.out.println(msg.type);
             switch (msg.type) {
                 case CMD_START_CONSUME:
@@ -59,7 +59,9 @@ public class KafkaSocket extends WebSocketAdapter {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             try {
-                getSession().getRemote().sendString(mapper.writeValueAsString(new Message(Message.TYPE.ERROR_INFO).put("error_info", e)));
+                getSession().getRemote().sendString(
+                        Message.error(e)
+                );
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

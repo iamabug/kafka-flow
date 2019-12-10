@@ -16,6 +16,7 @@
     <modules>
         <module>sunny-web</module>
         <module>sunny-server</module>
+        <module>sunny-dist</module>
     </modules>
     <build>
         <plugins>
