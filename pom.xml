@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>iamabug</groupId>
-    <artifactId>sunny</artifactId>
+    <artifactId>kafka-flow</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1</version>
 
@@ -14,9 +14,9 @@
         <jetty.version>9.4.24.v20191120</jetty.version>
     </properties>
     <modules>
-        <module>sunny-web</module>
-        <module>sunny-server</module>
-        <module>sunny-dist</module>
+        <module>kafka-flow-web</module>
+        <module>kafka-flow-server</module>
+        <module>kafka-flow-dist</module>
     </modules>
     <build>
         <plugins>
