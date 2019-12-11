@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-SUNNY_MAIN=iamabug.SunnyMain
+SUNNY_MAIN=iamabug.KafkaFlowMain
