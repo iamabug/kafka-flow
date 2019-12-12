@@ -14,22 +14,28 @@
 
         <body>
         <div class="container-fluid">
-        <ul class="nav nav-pills" role="tablist">
+        <ul class="nav">
         <li class="nav-item">
-        <a class="nav-link active" data-toggle="pill" href="#home">首页</a>
+        <a class="nav-link active"l href="/index.jsp">首页</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" data-toggle="pill" href="#config_tab">集群配置</a>
+        <a class="nav-link" href="/config.jsp">集群配置</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" data-toggle="pill" href="#produce_tab">生产数据</a>
+        <a class="nav-link" href="/produce.jsp">生产数据</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" data-toggle="pill" href="#consume_tab">消费数据</a>
+        <a class="nav-link" href="/consume.jsp">消费数据</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" data-toggle="pill" href="#duplex_tab">生产 & 消费</a>
+        <a class="nav-link" href="/duplex.jsp">生产 & 消费</a>
         </li>
+            <li class="nav-item">
+            <a class="nav-link" target="_blank" href="https://github.com/iamabug/kafka-flow">项目 Github</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/author.jsp">关于作者</a>
+            </li>
         </ul>
         </div>
         </body>
