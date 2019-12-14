@@ -13,8 +13,9 @@
         </head>
 
         <body>
-        <div class="container-fluid">
-        <ul class="nav">
+        <div class="container">
+            <nav class="navbar navbar-expand-sm bg-light">
+        <ul class="navbar-nav mx-auto">
         <li class="nav-item">
         <a class="nav-link active"l href="/index.jsp">首页</a>
         </li>
@@ -37,6 +38,7 @@
             <a class="nav-link" href="/author.jsp">关于作者</a>
             </li>
         </ul>
+            </nav>
         </div>
         </body>
         </html>

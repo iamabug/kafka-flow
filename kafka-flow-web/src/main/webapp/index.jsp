@@ -1,7 +1,7 @@
     <%@ page contentType="text/html; charset=UTF-8" %>
     <jsp:include page="template.jsp"></jsp:include>
     <div class="tab-content">
-    <div id="home" class="container-fluid tab-pane active"><br>
+    <div id="home" class="container tab-pane active"><br>
     <div class="jumbotron jumbotron-fluid">
     <div class="container-fluid">
     <h1>Kafka Flow</h1>

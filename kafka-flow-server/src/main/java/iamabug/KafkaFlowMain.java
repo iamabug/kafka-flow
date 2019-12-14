@@ -1,5 +1,6 @@
 package iamabug;
 
+import iamabug.common.Constants;
 import iamabug.kafka.KafkaDummyServlet;
 import org.apache.tomcat.util.scan.StandardJarScanner;
 import org.eclipse.jetty.apache.jsp.JettyJasperInitializer;
@@ -38,7 +39,7 @@ public class KafkaFlowMain {
         }
     }
 
-    public void run() throws Exception {
+    private void run() throws Exception {
         Server server = new Server(12345);
 
         ContextHandlerCollection contexts = new ContextHandlerCollection();
@@ -83,7 +84,7 @@ public class KafkaFlowMain {
      */
     private RunMode getRunMode() throws IOException
     {
-        String warLocation = System.getProperty("kafka-flow.war.location");
+        String warLocation = System.getProperty(Constants.PROPERTY_WAR_LOCATION);
         if (warLocation != null)
         {
             Path warPath = new File(warLocation).toPath().toRealPath();
