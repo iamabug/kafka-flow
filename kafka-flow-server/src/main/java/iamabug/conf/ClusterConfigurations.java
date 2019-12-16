@@ -23,7 +23,7 @@ public class ClusterConfigurations {
         if (prefix != null) {
             configFile = new File(prefix + "/clusters.json");
         } else {
-            configFile = new File("src/main/resources/clusters.json");
+            configFile = new File("conf/clusters.json");
         }
     }
 
@@ -48,6 +48,11 @@ public class ClusterConfigurations {
     private static List<ClusterConfiguration> loadConfigurations() {
         if (!configFile.exists()) {
             System.out.println("clusters.json not found, an empty ClusterConfigurations is generated");
+            try {
+                configFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return new ArrayList<>();
         }
         try {
