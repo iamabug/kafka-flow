@@ -17,7 +17,7 @@
             <nav class="navbar navbar-expand-sm bg-light">
         <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-        <a class="nav-link active"l href="/index">首页</a>
+        <a class="nav-link active" href="/index">首页</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="/config">集群配置</a>

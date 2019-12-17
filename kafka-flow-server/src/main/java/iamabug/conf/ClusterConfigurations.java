@@ -2,7 +2,10 @@ package iamabug.conf;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import iamabug.common.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +16,8 @@ import java.util.List;
  * 所有 Kafka 集群的配置
  */
 public class ClusterConfigurations {
+
+    private static final Logger logger = LoggerFactory.getLogger(ClusterConfigurations.class);
 
     private static ObjectMapper mapper = new ObjectMapper();
 
@@ -32,7 +37,7 @@ public class ClusterConfigurations {
 
     static {
         clusters = loadConfigurations();
-        System.out.println(clusters);
+        logger.info("ClusterConfigurations loaded.\nInitial cluster configurations are : {}", clusters);
     }
 
     private ClusterConfigurations(){}
@@ -51,14 +56,14 @@ public class ClusterConfigurations {
             try {
                 configFile.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Exception occurred while creating clusters.json : {0}", e);
             }
             return new ArrayList<>();
         }
         try {
             return mapper.readValue(configFile, new TypeReference<List<ClusterConfiguration>>() {});
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Exception occurred while reading from clusters.json : {0}", e);
             return new ArrayList<>();
         }
     }
@@ -70,9 +75,10 @@ public class ClusterConfigurations {
                 configFile.createNewFile();
             }
             mapper.writeValue(configFile, clusters);
-            System.out.println(clusters);
+
+            logger.info("Current cluster configurations : {}.", clusters);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Exception occurred while adding cluster {} : {}", clusterConfiguration, e);
         }
     }
 

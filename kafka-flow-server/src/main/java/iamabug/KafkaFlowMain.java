@@ -15,6 +15,8 @@ import org.eclipse.jetty.util.resource.PathResource;
 import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.glassfish.jersey.servlet.ServletContainer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,6 +27,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class KafkaFlowMain {
+
+    private static final Logger logger = LoggerFactory.getLogger(KafkaFlowMain.class);
 
     enum RunMode {
         PROD,
@@ -37,7 +41,7 @@ public class KafkaFlowMain {
         try {
             new KafkaFlowMain().run();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("KafKaFlowMain exits due to exception: {}", e);
         }
     }
 
@@ -82,8 +86,8 @@ public class KafkaFlowMain {
         webapp.addServlet(holder, "/rest/*");
 
         // WebSocket
-        //ServletContextHandler ws = new ServletContextHandler(contexts, "/ws", ServletContextHandler.SESSIONS);
-        //ws.addServlet(new ServletHolder("ws", KafkaDummyServlet.class), "/kafka/dummy");
+        ServletContextHandler ws = new ServletContextHandler(contexts, "/ws", ServletContextHandler.SESSIONS);
+        ws.addServlet(new ServletHolder("ws", KafkaDummyServlet.class), "/kafka/dummy");
 
 
 
