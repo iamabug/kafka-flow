@@ -7,12 +7,14 @@ import org.eclipse.jetty.apache.jsp.JettyJasperInitializer;
 import org.eclipse.jetty.jsp.JettyJspServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
+import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.component.AbstractLifeCycle;
 import org.eclipse.jetty.util.resource.PathResource;
 import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.glassfish.jersey.servlet.ServletContainer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -47,6 +49,8 @@ public class KafkaFlowMain {
 
         // 前端页面
         WebAppContext webapp = new WebAppContext();
+        webapp.setContextPath("/");
+        //webapp.addServlet(new ServletHolder(new DefaultServlet()), "/*");
         contexts.addHandler(webapp);
         // JSP support
         Configuration.ClassList classlist = Configuration.ClassList
@@ -69,9 +73,19 @@ public class KafkaFlowMain {
 
         }
 
+        // Rest
+        ServletHolder holder =  new ServletHolder(new ServletContainer());
+        holder.setInitOrder(1);
+        holder.setInitParameter("com.sun.jersey.config.property.resourceConfigClass",
+                "com.sun.jersey.api.core.PackagesResourceConfig");
+        holder.setInitParameter("jersey.config.server.provider.packages", "iamabug.rest");
+        webapp.addServlet(holder, "/rest/*");
+
         // WebSocket
-        ServletContextHandler ws = new ServletContextHandler(contexts, "/ws", ServletContextHandler.SESSIONS);
-        ws.addServlet(new ServletHolder("ws", KafkaDummyServlet.class), "/kafka/dummy");
+        //ServletContextHandler ws = new ServletContextHandler(contexts, "/ws", ServletContextHandler.SESSIONS);
+        //ws.addServlet(new ServletHolder("ws", KafkaDummyServlet.class), "/kafka/dummy");
+
+
 
         server.start();
         server.join();

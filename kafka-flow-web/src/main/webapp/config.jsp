@@ -43,5 +43,10 @@
      <% } %>
         <br>
         <div class="container">
-        <button type="button" class="btn btn-primary">添加集群</button>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#addCluster">添加集群</button>
+        <div id="addCluster" class="collapse">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
         </div>
