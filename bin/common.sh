@@ -17,13 +17,12 @@ fi
 
 if [[ -z "${KAFKAFLOW_LOG_DIR}" ]]; then
   export KAFKAFLOW_LOG_DIR="${KAFKAFLOW_HOME}/logs"
-  export KAFKAFLOW_OUT_FILE="${KAFKAFLOW_LOG_DIR}/kafkaflow.out"
-  export KAFKAFLOW_LOG_FILE="${KAFKAFLOW_LOG_DIR}/kafkaflow.log"
+  export KAFKAFLOW_OUT_FILE="${KAFKAFLOW_LOG_DIR}/kafka-flow.out"
 fi
 
 if [[ -z "${KAFKAFLOW_PID_DIR}" ]]; then
   export KAFKAFLOW_PID_DIR="${KAFKAFLOW_HOME}/run"
-  export KAFKAFLOW_PID_FILE="${KAFKAFLOW_PID_DIR}/kafkaflow.pid"
+  export KAFKAFLOW_PID_FILE="${KAFKAFLOW_PID_DIR}/kafka-flow.pid"
 fi
 
 if [[ -z "${KAFKAFLOW_WAR}" ]]; then
@@ -52,4 +51,4 @@ export KAFKAFLOW_MAIN="iamabug.KafkaFlowMain"
 export KAFKAFLOW_NAME="KafkaFlow"
 
 # KafkaFlow 命令行参数
-export KAFKAFLOW_ARGS="-Dkafkaflow.war.location=${KAFKAFLOW_WAR} -Dkafkaflow.conf.path=${KAFKAFLOW_CONF_DIR}"
+export KAFKAFLOW_ARGS="-Dwar.location=${KAFKAFLOW_WAR} -Dconf.dir=${KAFKAFLOW_CONF_DIR} -Dlogback.configurationFile=${KAFKAFLOW_CONF_DIR}/logback.xml -Dlog.dir=${KAFKAFLOW_LOG_DIR}"
