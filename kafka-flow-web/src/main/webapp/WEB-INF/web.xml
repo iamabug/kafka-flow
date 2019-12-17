@@ -5,4 +5,52 @@
 <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
 </welcome-file-list>
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>config</servlet-name>
+        <jsp-file>/config.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>config</servlet-name>
+        <url-pattern>/config</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>produce</servlet-name>
+        <jsp-file>/produce.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>produce</servlet-name>
+        <url-pattern>/produce</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>consume</servlet-name>
+        <jsp-file>/consume.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>consume</servlet-name>
+        <url-pattern>/consume</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>duplex</servlet-name>
+        <jsp-file>/duplex.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>duplex</servlet-name>
+        <url-pattern>/duplex</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>author</servlet-name>
+        <jsp-file>/author.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>author</servlet-name>
+        <url-pattern>/author</url-pattern>
+    </servlet-mapping>
 </web-app>
