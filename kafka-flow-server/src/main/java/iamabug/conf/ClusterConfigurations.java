@@ -51,10 +51,12 @@ public class ClusterConfigurations {
      * @return
      */
     private static List<ClusterConfiguration> loadConfigurations() {
-        if (!configFile.exists()) {
-            return new ArrayList<>();
-        }
         try {
+            if (!configFile.exists()) {
+                configFile.createNewFile();
+                mapper.writeValue(configFile, new ArrayList<>());
+                return new ArrayList<>();
+            }
             return mapper.readValue(configFile, new TypeReference<List<ClusterConfiguration>>() {});
         } catch (IOException e) {
             logger.error("Exception occurred while reading from clusters.json : {0}", e);
@@ -76,7 +78,14 @@ public class ClusterConfigurations {
         }
     }
 
-    public static void removeCluster() {
-
+    public static void removeCluster(ClusterConfiguration clusterConfiguration) {
+        clusters.remove(clusterConfiguration);
+        logger.info("Current cluster configurations are : {}.", clusters);
+        try {
+            mapper.writeValue(configFile, clusters);
+            logger.info("Current cluster configurations : {}.", clusters);
+        } catch (IOException e) {
+            logger.error("Exception occurred while removing cluster {} : {}", clusterConfiguration, e);
+        }
     }
 }

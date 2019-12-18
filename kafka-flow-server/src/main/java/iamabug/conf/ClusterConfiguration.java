@@ -3,6 +3,8 @@ package iamabug.conf;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.Objects;
+
 /**
  * 一个 Kafka 集群的配置
  */
@@ -46,8 +48,22 @@ public class ClusterConfiguration {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClusterConfiguration that = (ClusterConfiguration) o;
+        return name.equals(that.name) &&
+                servers.equals(that.servers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, servers);
+    }
+
+    @Override
     public String toString() {
-        return "ClusterConfiguration{" +
+        return "{" +
                 "name='" + name + '\'' +
                 ", servers='" + servers + '\'' +
                 '}';

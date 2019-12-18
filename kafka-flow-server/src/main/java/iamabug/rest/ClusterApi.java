@@ -7,6 +7,7 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -35,5 +36,11 @@ public class ClusterApi {
         String name = fields[0].split("=")[1];
         String servers = fields[1].split("=")[1];
         return new ClusterConfiguration(name, servers);
+    }
+
+    @DELETE
+    public void remoteCluster(String request) throws URISyntaxException{
+        logger.info("remove cluster is called: " + request);
+        ClusterConfigurations.removeCluster(parseRequest(request));
     }
 }

@@ -19,6 +19,7 @@
             <tr>
             <th>集群名称</th>
             <th>bootstrap.servers</th>
+            <th>操作</th>
             </tr>
             </thead>
         <tbody>
@@ -26,8 +27,9 @@
             <% for (int i = 0; i<handler.getClusterNumber(); i++){ %>
 
         <tr>
-        <td><%= clusters.get(i).getName() %></td>
-        <td><%= clusters.get(i).getServers() %></td>
+        <td id="name<%= i %>"><%= clusters.get(i).getName() %></td>
+        <td id="servers<%= i %>"><%= clusters.get(i).getServers() %></td>
+        <td><button id="<%= i %>" type="button" class="btn btn-outline-danger" onclick=removeCluster(this)>删除</button></td>
         </tr>
         <%}%>
         </tbody>
@@ -35,10 +37,20 @@
         </div>
 
         <% } else { %>
-            <tbody></tbody>
-        </div>
      <% } %>
         <br>
         <div class="container">
         <a href="/new_config"><button type="button" class="btn btn-primary" >添加集群</button></a>
         </div>
+        <script>
+        function removeCluster(button) {
+        name = document.getElementById("name"+button.id).innerHTML
+        servers = document.getElementById("servers"+button.id).innerHTML
+        $.ajax({
+        type: "DELETE",
+        url: "/rest/clusters",
+        data: {name:name,servers:servers}
+        })
+        setTimeout(function(){ location.reload(); }, 200);
+        }
+        </script>
