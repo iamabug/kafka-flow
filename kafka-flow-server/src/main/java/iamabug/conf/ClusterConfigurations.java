@@ -37,7 +37,7 @@ public class ClusterConfigurations {
 
     static {
         clusters = loadConfigurations();
-        logger.info("ClusterConfigurations loaded.\nInitial cluster configurations are : {}", clusters);
+        logger.info("ClusterConfigurations loaded. Initial cluster configurations are : {}", clusters);
     }
 
     private ClusterConfigurations(){}
@@ -52,12 +52,6 @@ public class ClusterConfigurations {
      */
     private static List<ClusterConfiguration> loadConfigurations() {
         if (!configFile.exists()) {
-            System.out.println("clusters.json not found, an empty ClusterConfigurations is generated");
-            try {
-                configFile.createNewFile();
-            } catch (IOException e) {
-                logger.error("Exception occurred while creating clusters.json : {0}", e);
-            }
             return new ArrayList<>();
         }
         try {
