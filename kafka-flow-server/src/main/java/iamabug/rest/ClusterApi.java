@@ -15,8 +15,11 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 @Path("/clusters")
 public class ClusterApi {
@@ -25,21 +28,21 @@ public class ClusterApi {
 
     @POST
     @Produces(MediaType.TEXT_HTML)
-    public Response addCluster(String request) throws URISyntaxException {
+    public Response addCluster(String request) throws URISyntaxException, UnsupportedEncodingException {
         logger.info("addCluster is called");
         ClusterConfigurations.addCluster(parseRequest(request));
         return Response.seeOther(new URI("/config")).build();
     }
 
-    private ClusterConfiguration parseRequest(String request) {
+    private ClusterConfiguration parseRequest(String request) throws UnsupportedEncodingException {
         String[] fields = request.split("&");
-        String name = fields[0].split("=")[1];
-        String servers = fields[1].split("=")[1];
+        String name = URLDecoder.decode(fields[0].split("=")[1], "UTF-8");
+        String servers = URLDecoder.decode(fields[1].split("=")[1], "UTF-8");
         return new ClusterConfiguration(name, servers);
     }
 
     @DELETE
-    public void remoteCluster(String request) throws URISyntaxException{
+    public void remoteCluster(String request) throws UnsupportedEncodingException {
         logger.info("remove cluster is called: " + request);
         ClusterConfigurations.removeCluster(parseRequest(request));
     }
