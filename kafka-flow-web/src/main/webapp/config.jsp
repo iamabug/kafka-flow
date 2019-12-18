@@ -1,7 +1,8 @@
-    <%@ page contentType="text/html; charset=UTF-8" import="iamabug.jsp.JspHandler"%>
+    <%@ page contentType="text/html; charset=UTF-8" import="iamabug.jsp.JspHandler,iamabug.conf.ClusterConfiguration,java.util.List"%>
         <jsp:include page="template.jsp"></jsp:include>
            <%!
            private JspHandler handler;
+           private List<ClusterConfiguration> clusters;
            %>
                   <%!
   public void jspInit(){
@@ -21,18 +22,14 @@
             </tr>
             </thead>
         <tbody>
+        <% clusters = handler.getClusters(); %>
+            <% for (int i = 0; i<handler.getClusterNumber(); i++){ %>
+
         <tr>
-        <td>John</td>
-        <td>Doe</td>
+        <td><%= clusters.get(i).getName() %></td>
+        <td><%= clusters.get(i).getServers() %></td>
         </tr>
-        <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        </tr>
-        <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        </tr>
+        <%}%>
         </tbody>
         </table>
         </div>
