@@ -2,9 +2,9 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
-<welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-</welcome-file-list>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
     <servlet>
         <servlet-name>index</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
@@ -53,4 +53,12 @@
         <servlet-name>author</servlet-name>
         <url-pattern>/author</url-pattern>
     </servlet-mapping>
-</web-app>
+    <servlet>
+        <servlet-name>new_config</servlet-name>
+        <jsp-file>/new_config.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>new_config</servlet-name>
+        <url-pattern>/new_config</url-pattern>
+    </servlet-mapping>
+        </web-app>
