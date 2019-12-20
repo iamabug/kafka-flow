@@ -20,7 +20,7 @@
             <label>集群：</label>
         </td>
         <td>
-            <select style="width:200px">
+            <select id="cluster" style="width:200px">
                 <% clusters = handler.getClusters(); %>
                 <% for (int i = 0; i<handler.getClusterNumber(); i++){ %>
             <option><%= clusters.get(i).getName()%></option>
@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td height="30"><label>topic：</label></td>
-            <td height="30"><input type="text" style="width:200px"></td>
+            <td height="30"><input type="text" style="width:200px" id="topic"></td>
         </tr>
         <tr>
             <td><label>offset.reset：</label></td>
@@ -45,9 +45,10 @@
         </table>
         <div>
         <br>
-        <button type="button" class="btn btn-primary">开始消费</button> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <button type="button" class="btn btn-secondary">停止消费</button>
+        <script src="/js/consume.js"></script>
+        <button type="button" class="btn btn-primary" id="start" onclick="consume()">开始消费</button> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <button type="button" class="btn btn-secondary" id="stop" onclick="stop()">停止消费</button>
         </div>
         <br>
-        <textarea class="form-control" rows="20" id="comment"></textarea>
+        <textarea class="form-control" rows="20" id="messages"></textarea>
         </div>

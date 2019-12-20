@@ -2,18 +2,25 @@ package iamabug.kafka;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import iamabug.common.Message;
+import iamabug.conf.ClusterConfigurations;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.*;
 
 public class Consumer extends Thread{
+
+    private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
+
     private RemoteEndpoint client;
     private static Random random = new Random();
-    ConsumerRecords<String, String> records;
+    private ConsumerRecords<String, String> records;
     private Message msg;
     private volatile boolean running = false;
 
@@ -29,7 +36,7 @@ public class Consumer extends Thread{
         consumer.subscribe(Collections.singletonList(msg.data.get("topic")));
         try {
             while (running) {
-                records = consumer.poll(1000);
+                records = consumer.poll(Duration.ofSeconds(2));
                 if (records.count() > 0) {
                     List<Map<String, String>> messages = new ArrayList<>();
                     records.forEach(record -> messages.add(assembleMessage(record)));
@@ -42,6 +49,7 @@ public class Consumer extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            logger.info("Closing KafkaConsumer ...");
             consumer.close();
         }
     }
@@ -57,7 +65,8 @@ public class Consumer extends Thread{
 
     private KafkaConsumer createConsumer(Message msg) {
         Properties props = new Properties();
-        props.put("bootstrap.servers", msg.data.get("bootstrap-server"));
+        props.put("bootstrap.servers",
+                Objects.requireNonNull(ClusterConfigurations.getBootstrapServerByName((String) msg.data.get("cluster"))));
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("auto.offset.reset", msg.data.get("offset"));
@@ -67,6 +76,7 @@ public class Consumer extends Thread{
 
 
     public void stopConsuming() {
+        logger.info("Stop consuming message for {}.", client.getInetSocketAddress());
         running = false;
     }
 }

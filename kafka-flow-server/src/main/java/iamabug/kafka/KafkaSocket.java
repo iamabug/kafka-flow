@@ -5,14 +5,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import iamabug.common.Message;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 public class KafkaSocket extends WebSocketAdapter {
 
+    private static final Logger logger = LoggerFactory.getLogger(KafkaSocket.class);
     private static ObjectMapper mapper = new ObjectMapper();
     private Consumer consumer;
 
+    private String getClientAddress() {
+        return getRemote().toString();
+    }
     @Override
     public void onWebSocketBinary(byte[] payload, int offset, int len) {
         super.onWebSocketBinary(payload, offset, len);
@@ -21,19 +27,19 @@ public class KafkaSocket extends WebSocketAdapter {
     @Override
     public void onWebSocketClose(int statusCode, String reason) {
         super.onWebSocketClose(statusCode, reason);
-        System.out.println("websocket closed: " + getSession().getRemoteAddress().getHostString());
+        logger.info("websocket closed: {}", getClientAddress());
     }
 
     @Override
     public void onWebSocketConnect(Session sess) {
         super.onWebSocketConnect(sess);
-        System.out.println("websocket connected: " + sess.getRemoteAddress().getAddress());
+        logger.info("websocket connected: {}", getClientAddress());
     }
 
     @Override
     public void onWebSocketError(Throwable cause) {
         super.onWebSocketError(cause);
-        System.out.println("websocket error: " + getSession().getRemoteAddress().getHostString());
+        logger.info("websocket error: {}", getClientAddress());
     }
 
     @Override
@@ -41,28 +47,27 @@ public class KafkaSocket extends WebSocketAdapter {
         super.onWebSocketText(message);
         try {
             Message msg = Message.fromJson(message);
-            System.out.println(msg.type);
+            logger.info("Receive websocket message {} from {}", msg, getClientAddress());
             switch (msg.type) {
                 case CMD_START_CONSUME:
-                    System.out.println("cmd_start_consume");
                     consumer = new Consumer(getRemote(), msg);
                     consumer.start();
                     break;
                 case CMD_STOP_CONSUME:
                     consumer.stopConsuming();
                     break;
-                case CMD_LIST_TOPICS:
-                    break;
                 default:
                     break;
             }
         } catch (JsonProcessingException e) {
+            logger.error("Exception occurred while processing json: {0}, sending this to client", e);
             e.printStackTrace();
             try {
                 getSession().getRemote().sendString(
                         Message.error(e)
                 );
             } catch (IOException ex) {
+                logger.error("Exception occurred while sending error messages back to client: {0}", ex);
                 ex.printStackTrace();
             }
 

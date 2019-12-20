@@ -88,4 +88,13 @@ public class ClusterConfigurations {
             logger.error("Exception occurred while removing cluster {} : {}", clusterConfiguration, e);
         }
     }
+
+    public static String getBootstrapServerByName(String name) {
+        for (ClusterConfiguration config : clusters) {
+            if (config.getName().equals(name)) {
+                return config.getServers();
+            }
+        }
+        return null;
+    }
 }

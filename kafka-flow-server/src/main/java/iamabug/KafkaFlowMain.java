@@ -1,13 +1,12 @@
 package iamabug;
 
 import iamabug.common.Constants;
-import iamabug.kafka.KafkaDummyServlet;
+import iamabug.kafka.KafkaServlet;
 import org.apache.tomcat.util.scan.StandardJarScanner;
 import org.eclipse.jetty.apache.jsp.JettyJasperInitializer;
 import org.eclipse.jetty.jsp.JettyJspServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
-import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.component.AbstractLifeCycle;
@@ -87,7 +86,7 @@ public class KafkaFlowMain {
 
         // WebSocket
         ServletContextHandler ws = new ServletContextHandler(contexts, "/ws", ServletContextHandler.SESSIONS);
-        ws.addServlet(new ServletHolder("ws", KafkaDummyServlet.class), "/kafka/dummy");
+        ws.addServlet(new ServletHolder("ws", KafkaServlet.class), "/kafka");
 
 
 
