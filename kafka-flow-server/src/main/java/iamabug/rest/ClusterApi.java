@@ -2,8 +2,6 @@ package iamabug.rest;
 
 import iamabug.conf.ClusterConfiguration;
 import iamabug.conf.ClusterConfigurations;
-import org.glassfish.jersey.server.Uri;
-import org.glassfish.jersey.server.mvc.Viewable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

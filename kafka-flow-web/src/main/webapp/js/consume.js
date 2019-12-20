@@ -5,7 +5,7 @@ function consume() {
     $('#stop').show()
     $('#messages').val('')
     $('#messages')
-    ws = new WebSocket("ws://localhost:12345/ws/kafka")
+    ws = new WebSocket("ws://" + window.location.host + "/ws/kafka")
     msg = {
         "type": "CMD_START_CONSUME",
         "data": {
@@ -50,6 +50,7 @@ function stop() {
     $('#stop').hide()
     ws.send(JSON.stringify({"type": "CMD_STOP_CONSUME"}))
     clearTimeout(timer)
+    ws.close()
 }
 
 function get_topics() {

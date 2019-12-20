@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 public class KafkaSocket extends WebSocketAdapter {
 
@@ -17,7 +18,7 @@ public class KafkaSocket extends WebSocketAdapter {
     private Consumer consumer;
 
     private String getClientAddress() {
-        return getRemote().toString();
+        return getRemote().getInetSocketAddress().getHostName();
     }
     @Override
     public void onWebSocketBinary(byte[] payload, int offset, int len) {

@@ -49,7 +49,7 @@ public class Consumer extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            logger.info("Closing KafkaConsumer ...");
+            logger.info("Closing KafkaConsumer for client {}.", client.getInetSocketAddress().getHostName());
             consumer.close();
         }
     }
@@ -70,13 +70,13 @@ public class Consumer extends Thread{
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("auto.offset.reset", msg.data.get("offset"));
-        props.put("group.id", "kafka-flow-" + random.nextInt());
+        props.put("group.id", "kafka-flow" + random.nextInt());
         return new KafkaConsumer<String, String>(props);
     }
 
 
     public void stopConsuming() {
-        logger.info("Stop consuming message for {}.", client.getInetSocketAddress());
+        logger.info("Stop consuming message for client {}.", client.getInetSocketAddress().getHostName());
         running = false;
     }
 }
