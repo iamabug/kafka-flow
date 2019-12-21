@@ -1,6 +1,14 @@
 var ws
 var timer
 function consume() {
+    if(document.getElementById("cluster").options.length == 0) {
+        alert("未配置任何集群，请先进行集群配置！")
+        return;
+    }
+    if ($('#cluster').find(":selected").text == ''){
+        alert("未选择集群！")
+        return;
+    }
     if ($('#topic').val() == '') {
         alert("topic 不可为空！")
         return;
