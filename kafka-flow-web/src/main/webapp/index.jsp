@@ -7,7 +7,7 @@
     <h1>Kafka Flow</h1>
     <p>一个在浏览器中生产和消费数据的 Kafka 工具。
     </p>
-    <button type="button" class="btn btn-primary">了解更多 »</button>
+        <a target="_blank" href="https://github.com/iamabug/kafka-flow"><button type="button" class="btn btn-primary">了解更多 »</button></a>
     </div>
     </div>
 

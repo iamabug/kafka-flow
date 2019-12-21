@@ -36,6 +36,9 @@
         </fileSet>
         <fileSet>
             <directory>../conf</directory>
+            <excludes>
+                <exclude>clusters.json</exclude>
+            </excludes>
         </fileSet>
     </fileSets>
 </assembly>

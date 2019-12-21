@@ -39,6 +39,8 @@
         <script src="/js/produce.js"></script>
         <button type="button" class="btn btn-primary" id="produce" onclick="produce()">生产</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <button type="button" class="btn btn-primary" id="clear" onclick="$('#messages').val('')">清空</button>
+        &nbsp&nbsp&nbsp&nbsp
+        <b id="success"></b>
         </div>
         <br>
         <textarea class="form-control" rows="20" id="messages"></textarea>

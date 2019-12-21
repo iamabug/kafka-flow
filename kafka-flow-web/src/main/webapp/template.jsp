@@ -29,7 +29,7 @@
         <a class="nav-link" href="/consume">消费数据</a>
         </li>
             <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://github.com/iamabug/kafka-flow">项目 Github</a>
+            <a class="nav-link" target="_blank" href="https://github.com/iamabug/kafka-flow">项目主页</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="/author">关于作者</a>

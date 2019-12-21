@@ -37,7 +37,12 @@ function produce() {
         }
         switch (data.type) {
             case "PRODUCE_DONE":
+            document.getElementById("success").style.display = "inline"
+            document.getElementById("success").style.color = 'green';
+            $('#success').html("刚刚成功生产了 " + data.data.total + " 条消息！")
+            setTimeout(hide_info, 2000)
             clearTimeout(timer)
+
 
         }
 
@@ -48,3 +53,10 @@ function clear() {
     alert("clear")
     $('#messages').val('')
 }
+
+function hide_info() {
+   document.getElementById("success").style.display = "none";
+}
+$(document).ready(function() {
+    hide_info()
+});

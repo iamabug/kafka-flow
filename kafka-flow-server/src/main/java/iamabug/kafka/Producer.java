@@ -35,7 +35,7 @@ public class Producer {
         }
 
         try {
-            client.sendString(new Message(Message.TYPE.PRODUCE_DONE).toJson());
+            client.sendString(new Message(Message.TYPE.PRODUCE_DONE).put("total", messages.length).toJson());
         } catch (IOException e) {
             logger.error("Exception occurred when sending CMD_PRODUCE to client {}: {}",
                     client.getInetSocketAddress().getHostString(), e);
