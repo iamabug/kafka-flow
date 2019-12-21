@@ -8,7 +8,7 @@ A tool for Kafka that allows you to consume and produce messages in browsers.
 
 在 github 的 releases 页面下载二进制压缩包：
 
-![](https://tva1.sinaimg.cn/large/006tNbRwly1ga4btuyornj30q40a7t9i.jpg)
+![](images/1.png)
 
 或者使用 `wget` 下载：
 
