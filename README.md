@@ -31,7 +31,7 @@ bin/kafka-flow.sh start
 
 在浏览器里访问对应地址（比如：[http://localhost:12345](http://localhost:12345)），出现如下页面说明启动成功。
 
-![](https://tva1.sinaimg.cn/large/006tNbRwly1ga4c3vhebsj30xi0axwf5.jpg)
+![](images/2.png)
 
 ## 使用方法
 
@@ -41,15 +41,15 @@ bin/kafka-flow.sh start
 
 点击"集群配置"，再点击"添加集群"：
 
-![](https://tva1.sinaimg.cn/large/006tNbRwly1ga4c6kgzxsj30w105k74l.jpg)
+![](images/3.jpg)
 
 在新页面中输入 Kafka 集群的名称和 bootstrap.servers 的地址（多个地址用逗号分隔即可）：
 
-![](https://tva1.sinaimg.cn/large/006tNbRwly1ga4c7ldfmkj30vm0a4gmd.jpg)
+![](images/4.jpg)
 
 点击确认之后，可以看到集群列表：
 
-![](https://tva1.sinaimg.cn/large/006tNbRwly1ga4c8xc5huj30vn07h74t.jpg)
+![](images/5.jpg)
 
 集群添加成功。
 
@@ -59,7 +59,7 @@ bin/kafka-flow.sh start
 
 点击"生产数据"，选择对应的集群，输入 topic 名称，然后在下方文本框中输入要生产的消息，一条或多条都可以：
 
-![](https://tva1.sinaimg.cn/large/006tNbRwly1ga4ccdnfo6j30vf0a9mxy.jpg)
+![](images/6.jpg)
 
 点击"生产"按钮即可，上图中生产了两条消息。
 
@@ -67,11 +67,11 @@ bin/kafka-flow.sh start
 
 点击"消费数据"，选择对应的集群，输入 topic 名称，选择 offset reset 的类型，earliest 从最老的数据消费，latest 从最新的数据消费：
 
-![](https://tva1.sinaimg.cn/large/006tNbRwly1ga4cfjivy8j30vz0bp754.jpg)
+![](images/7.jpg)
 
 点击"开始消费"按钮，稍等一会，下方的文本框就会出现消费到的数据：
 
-![](https://tva1.sinaimg.cn/large/006tNbRwly1ga4cioy2osj30ve0cbq3y.jpg)
+![](images/8.jpg)
 
 点击"停止消费"按钮，即可停止消费。
 
