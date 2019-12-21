@@ -38,14 +38,6 @@
         <url-pattern>/consume</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>duplex</servlet-name>
-        <jsp-file>/duplex.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>duplex</servlet-name>
-        <url-pattern>/duplex</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>author</servlet-name>
         <jsp-file>/author.jsp</jsp-file>
     </servlet>

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
 
-public class Consumer extends Thread{
+public class Consumer extends Thread {
 
     private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
@@ -23,16 +23,17 @@ public class Consumer extends Thread{
     private ConsumerRecords<String, String> records;
     private Message msg;
     private volatile boolean running = false;
+    private KafkaConsumer consumer;
 
     public Consumer(RemoteEndpoint client, Message msg) {
         this.client = client;
         this.msg = msg;
+        consumer = createConsumer(msg);
     }
 
     @Override
     public void run() {
         running = true;
-        KafkaConsumer consumer = createConsumer(msg);
         consumer.subscribe(Collections.singletonList(msg.data.get("topic")));
         try {
             while (running) {

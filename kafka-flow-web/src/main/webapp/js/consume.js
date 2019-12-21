@@ -1,6 +1,10 @@
 var ws
 var timer
 function consume() {
+    if ($('#topic').val() == '') {
+        alert("topic 不可为空！")
+        return;
+    }
     $('#start').hide()
     $('#stop').show()
     $('#messages').val('')

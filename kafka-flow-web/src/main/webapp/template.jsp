@@ -28,9 +28,6 @@
         <li class="nav-item">
         <a class="nav-link" href="/consume">消费数据</a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="/duplex">生产 & 消费</a>
-        </li>
             <li class="nav-item">
             <a class="nav-link" target="_blank" href="https://github.com/iamabug/kafka-flow">项目 Github</a>
             </li>

@@ -14,8 +14,8 @@ import java.net.InetAddress;
 public class KafkaSocket extends WebSocketAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(KafkaSocket.class);
-    private static ObjectMapper mapper = new ObjectMapper();
     private Consumer consumer;
+    private Producer producer;
 
     private String getClientAddress() {
         return getRemote().getInetSocketAddress().getHostName();
@@ -45,17 +45,23 @@ public class KafkaSocket extends WebSocketAdapter {
 
     @Override
     public void onWebSocketText(String message) {
-        super.onWebSocketText(message);
         try {
             Message msg = Message.fromJson(message);
-            logger.info("Receive websocket message {} from {}", msg, getClientAddress());
+            if (msg.type != Message.TYPE.PING)
+                logger.info("Receive websocket message {} from {}", msg, getClientAddress());
             switch (msg.type) {
                 case CMD_START_CONSUME:
-                    consumer = new Consumer(getRemote(), msg);
+                    if (consumer == null)
+                        consumer = new Consumer(getRemote(), msg);
                     consumer.start();
                     break;
                 case CMD_STOP_CONSUME:
                     consumer.stopConsuming();
+                    break;
+                case CMD_PRODUCE:
+                    if (producer == null)
+                        producer = new Producer(getRemote(), msg);
+                    producer.produce(msg);
                     break;
                 default:
                     break;

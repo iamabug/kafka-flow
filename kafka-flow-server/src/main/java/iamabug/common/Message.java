@@ -13,16 +13,10 @@ public class Message {
     public enum TYPE {
         CMD_START_CONSUME,
         CMD_STOP_CONSUME,
-        CMD_RESUME_CONSUME,
         MESSAGES_CONSUMED,
-        CMD_LIST_TOPICS,
-        RESULT_LIST_TOPICS,
+        CMD_PRODUCE,
+        PRODUCE_DONE,
 
-        KAFKA_CONSUME,
-        STOP_CONSUME,
-        TOPIC_LIST,
-        KAFKA_MESSAGES,
-        KAFKA_PRODUCE,
         PING,
         ERROR_INFO,
     }
