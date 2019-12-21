@@ -7,7 +7,7 @@
         <format>dir</format>
     </formats>
     <includeBaseDirectory>true</includeBaseDirectory>
-    <baseDirectory>kafka-flow-dist-${project.version}-bin</baseDirectory>
+    <baseDirectory>kafka-flow-${project.version}-bin</baseDirectory>
     <dependencySets>
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
@@ -39,6 +39,13 @@
             <excludes>
                 <exclude>clusters.json</exclude>
             </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>..</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>README.md</include>
+            </includes>
         </fileSet>
     </fileSets>
 </assembly>

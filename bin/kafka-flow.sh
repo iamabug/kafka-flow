@@ -33,6 +33,7 @@ function start() {
     return 1;
   else
     echo -e "${KAFKAFLOW_NAME} started successfully !"
+    echo -e "${KAFKAFLOW_NAME} is running on port 12345."
     echo ${pid} > "${KAFKAFLOW_PID_FILE}"
   fi
 }
