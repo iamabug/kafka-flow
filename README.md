@@ -1,6 +1,7 @@
 # kafka-flow
 
 A tool for Kafka that allows you to consume and produce messages in browsers.
+
 一个可以在浏览器里生产数据和消费数据的 Kafka 工具。
 
 ## 安装方法
@@ -28,7 +29,7 @@ cd kafka-flow-0.1.0-bin
 bin/kafka-flow.sh start
 ```
 
-在浏览器里访问对应地址（比如：http://localhost:12345），出现如下页面说明启动成功。
+在浏览器里访问对应地址（比如：[http://localhost:12345](http://localhost:12345)），出现如下页面说明启动成功。
 
 ![](https://tva1.sinaimg.cn/large/006tNbRwly1ga4c3vhebsj30xi0axwf5.jpg)
 
