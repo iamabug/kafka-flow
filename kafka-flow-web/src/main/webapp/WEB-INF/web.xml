@@ -38,14 +38,6 @@
         <url-pattern>/consume</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>author</servlet-name>
-        <jsp-file>/author.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>author</servlet-name>
-        <url-pattern>/author</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>new_config</servlet-name>
         <jsp-file>/new_config.jsp</jsp-file>
     </servlet>

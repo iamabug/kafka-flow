@@ -31,9 +31,6 @@
             <li class="nav-item">
             <a class="nav-link" target="_blank" href="https://github.com/iamabug/kafka-flow">项目主页</a>
             </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/author">关于作者</a>
-            </li>
         </ul>
             </nav>
         </div>
